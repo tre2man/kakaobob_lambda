@@ -15,9 +15,10 @@
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.12",
     "dayjs": "^1.11.5",
-    "query-string": "^7.1.1"
+    "dotenv-cli": "^6.0.0"
   },
   "scripts": {
-    "deploy" : "AWS_DEFAULT_PROFILE=42.4.namwkim && sls deploy"
+    "deploy:local": "AWS_DEFAULT_PROFILE=42.4.namwkim dotenv -e .env -- serverless deploy",
+    "deploy:ci" : "serverless deploy"
   }
 }

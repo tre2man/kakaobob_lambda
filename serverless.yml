@@ -8,10 +8,9 @@ plugins:
   - serverless-add-api-key
 
 custom:
-  ENV_CONFIG: ${file(./config/config.js):ENV_CONFIG}
   apiKeys:
     - name: kakaobob_key
-      value: ${self:custom.ENV_CONFIG.MY_X_API_KEY}
+      value: ${env.X_API_KEY}
 
 provider:
   name: aws
@@ -20,9 +19,9 @@ provider:
   memorySize: 1024
   timeout: 30
   environment:
-    MY_AWS_ACCESSKEY_ID: ${self:custom.ENV_CONFIG.MY_AWS_ACCESSKEY_ID}
-    MY_AWS_SECRET_ACCESS_KEY: ${self:custom.ENV_CONFIG.MY_AWS_SECRET_ACCESS_KEY}
-    MY_X_API_KEY: ${self:custom.ENV_CONFIG.MY_X_API_KEY}
+    MY_AWS_ACCESSKEY_ID: ${env.AWS_ACCESSKEY_ID}
+    MY_AWS_SECRET_ACCESS_KEY: ${env.AWS_SECRET_ACCESS_KEY}
+    MY_X_API_KEY: ${env.MY_X_API_KEY}
 
 functions:
   main:
