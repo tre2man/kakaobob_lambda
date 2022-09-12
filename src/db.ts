@@ -8,8 +8,8 @@ import { UserInfo } from "./types";
 AWS.config.update({
   region: "ap-northeast-2",
   credentials: new Credentials({
-    accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID as string,
-    secretAccessKey: process.env.MY_AWS_SECRET_ACCESS_KEY as string,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
   }),
 });
 
