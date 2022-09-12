@@ -181,6 +181,6 @@ dist
 .serverless
 
 # Config files
-config 
+config/config.js
 
 # End of https://www.toptal.com/developers/gitignore/api/dotenv,serverless,macos,node
