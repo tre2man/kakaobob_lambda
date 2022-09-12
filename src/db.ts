@@ -46,7 +46,10 @@ export const readDB = async (userKey: string): Promise<UserInfo | null> => {
  * @param value value
  * @returns
  */
-export const createDB = async (userKey: string, value: string) => {
+export const createDB = async (
+  userKey: string,
+  value: string
+): Promise<boolean> => {
   try {
     return new Promise((resolve) => {
       dynamo.put(
