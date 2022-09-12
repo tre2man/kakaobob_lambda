@@ -19,9 +19,9 @@ serverless deploy
 ### 요청 보내기
 ```json
 {
-  Body : "JSON 형식으로 카카오톡 스킬 참고",
-  Header : {
-    x-api-key : "키 값"
+  "Body" : "JSON 형식으로 카카오톡 스킬 참고",
+  "Header" : {
+    "x-api-key" : "키 값"
   }
 }
 ```
