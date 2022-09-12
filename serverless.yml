@@ -17,7 +17,7 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: ap-northeast-2
-  memorySize: 2048
+  memorySize: 1024
   timeout: 30
   environment:
     MY_AWS_ACCESSKEY_ID: ${self:custom.ENV_CONFIG.MY_AWS_ACCESSKEY_ID}
