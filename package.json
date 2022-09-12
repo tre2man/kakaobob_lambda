@@ -19,6 +19,6 @@
   },
   "scripts": {
     "deploy:local": "AWS_DEFAULT_PROFILE=42.4.namwkim dotenv -e .env -- serverless deploy",
-    "deploy:ci" : "serverless deploy"
+    "deploy:ci": "serverless deploy"
   }
 }
