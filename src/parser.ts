@@ -10,7 +10,13 @@ import {
   WEEK_ARRAY,
 } from "./const";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import { Cheerio, AnyNode } from "cheerio";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Seoul");
 
 const rawCheerioToString = (input: Cheerio<AnyNode>) => {
   return input
@@ -31,7 +37,7 @@ export const menuParser = async (
   let text = "선택한 날짜 : ";
   const nowDay =
     says === "오늘"
-      ? dayjs().get("day")
+      ? dayjs().tz().get("day")
       : says === "일요일"
       ? 7
       : WEEK_ARRAY.indexOf(says, 0);

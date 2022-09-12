@@ -1,5 +1,11 @@
 import dayjs from "dayjs";
 import { OutputList } from "./types";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Seoul");
 
 export const STUDENT_RESTAURANT_URL =
   "https://www.kumoh.ac.kr/ko/restaurant01.do";
@@ -92,13 +98,13 @@ export const DATE_LIST: OutputList = {
         simpleText: {
           text:
             "📅 요일을 선택해 주세요. 📅\n\n오늘은 " +
-            dayjs().get("year") +
+            dayjs().tz().get("year") +
             "년 " +
-            (dayjs().get("month") + 1) +
+            (dayjs().tz().get("month") + 1) +
             "월 " +
-            dayjs().get("date") +
+            dayjs().tz().get("date") +
             "일 " +
-            WEEK_ARRAY[dayjs().get("day")] +
+            WEEK_ARRAY[dayjs().tz().get("day")] +
             " 입니다.",
         },
       },
