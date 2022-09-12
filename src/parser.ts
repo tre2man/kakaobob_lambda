@@ -10,6 +10,15 @@ import {
   WEEK_ARRAY,
 } from "./const";
 import dayjs from "dayjs";
+import { Cheerio, AnyNode } from "cheerio";
+
+const rawCheerioToString = (input: Cheerio<AnyNode>) => {
+  return input
+    .text()
+    .split("\t")
+    .filter((r) => r !== " \n" && r !== "" && r !== "\n")
+    .join("");
+};
 
 export const menuParser = async (
   resIdx: string | undefined,
@@ -32,16 +41,12 @@ export const menuParser = async (
     case "0":
     case "5":
       // 학생식당, 분식당
-      const header = $(getSelectorForStudentBunsic(nowDay, "header"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
-      const launch = $(getSelectorForStudentBunsic(nowDay, "menu"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
+      const header = rawCheerioToString(
+        $(getSelectorForStudentBunsic(nowDay, "header"))
+      );
+      const launch = rawCheerioToString(
+        $(getSelectorForStudentBunsic(nowDay, "menu"))
+      );
       const add = header + "\n" + launch;
       text += add;
       break;
@@ -49,41 +54,29 @@ export const menuParser = async (
     case "2":
     case "3":
       // 기숙사
-      const header2 = $(getSelectorForDomitory(nowDay, 1, "header"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
-      const launch2_1 = $(getSelectorForDomitory(nowDay, 1, "menu"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
-      const launch2_2 = $(getSelectorForDomitory(nowDay, 2, "menu"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
+      const header2 = rawCheerioToString(
+        $(getSelectorForDomitory(nowDay, 1, "header"))
+      );
+      const launch2_1 = rawCheerioToString(
+        $(getSelectorForDomitory(nowDay, 1, "menu"))
+      );
+      const launch2_2 = rawCheerioToString(
+        $(getSelectorForDomitory(nowDay, 2, "menu"))
+      );
       const add2 = header2 + "\n" + launch2_1 + "\n" + launch2_2;
       text += add2;
       break;
     case "4":
       // 교직원
-      const header3 = $(getSelectorForWorker(nowDay, 1, "header"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
-      const launch3_1 = $(getSelectorForWorker(nowDay, 1, "menu"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
-      const launch3_2 = $(getSelectorForWorker(nowDay, 2, "menu"))
-        .text()
-        .split("\t")
-        .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-        .join("");
+      const header3 = rawCheerioToString(
+        $(getSelectorForWorker(nowDay, 1, "header"))
+      );
+      const launch3_1 = rawCheerioToString(
+        $(getSelectorForWorker(nowDay, 1, "menu"))
+      );
+      const launch3_2 = rawCheerioToString(
+        $(getSelectorForWorker(nowDay, 2, "menu"))
+      );
       const add3 = header3 + "\n" + launch3_1 + "\n" + launch3_2;
       text += add3;
       break;
@@ -145,11 +138,7 @@ export const timeParser = async (location: string): Promise<OutputList> => {
     }
     const data = (await axios.get(RESTAURANT_URL_ARRAY[restaurant_idx])).data;
     const $ = load(data);
-    text += $(getSelectorForTime(1))
-      .text()
-      .split("\t")
-      .filter((r) => r !== " \n" && r !== "" && r !== "\n")
-      .join("");
+    text += rawCheerioToString($(getSelectorForTime(1)));
   }
 
   return {
