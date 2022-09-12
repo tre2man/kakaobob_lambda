@@ -169,7 +169,7 @@ export const getSelectorForDomitory = (
   type: "header" | "menu"
 ) => {
   const core = `#jwxe_main_content > div > div > div > div > table`;
-  if (type === "header") return core + ` > thead > tr > th:nth-child(${1})`;
+  if (type === "header") return core + ` > thead > tr > th:nth-child(${day})`;
   return (
     core +
     ` > tbody > tr:nth-child(${lunchOrDinner}) > td:nth-child(${day}) > ul`
