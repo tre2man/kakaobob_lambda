@@ -7,14 +7,15 @@
 - DynamoDB
 ---
 ## 사용법
-### 로컬 테스트하기
+### 로컬에서 테스트하기
 ```
 # serverless.yml - 프라이빗 메서드 해제 후 실행
 sls offline
 ```
-### 배포하기
+### 로컬에서 배포하기
 ```
-serverless deploy
+# .env가 미리 설정이 되어 있어야 합니다.
+yarn deploy:local 
 ```
 ### 요청 보내기
 ```json
@@ -27,7 +28,7 @@ serverless deploy
 ```
 ## 환경변수
 ```
-config/config.js
+.env OR github-secret
 ```
 
 ## 추후 개선점
