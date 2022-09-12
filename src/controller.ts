@@ -36,9 +36,6 @@ const router = async (says: string, userKey: string) => {
 
 const main: Handler = async (event: any, context: Context) => {
   try {
-    console.log(process.env.AWS_ACCESSKEY_ID);
-    console.log(process.env.AWS_SECRET_ACCESS_KEY);
-    console.log(process.env.X_API_KEY);
     const body = JSON.parse(event.body);
     // 유저 발언과 key값 처리
     const says = String(body.userRequest.utterance);
