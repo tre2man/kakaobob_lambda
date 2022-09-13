@@ -5,7 +5,8 @@
 - Serverless
 - Typescript
 - DynamoDB
----
+## 채널 주소
+http://pf.kakao.com/_xhSDxlxb
 ## 사용법
 ### 로컬에서 테스트하기
 ```
