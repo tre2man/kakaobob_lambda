@@ -37,6 +37,7 @@ const router = async (says: string, userKey: string) => {
 const main: Handler = async (event: any, context: Context) => {
   try {
     const body = JSON.parse(event.body);
+    console.log(JSON.stringify(body));
     // 유저 발언과 key값 처리
     const says = String(body.userRequest.utterance);
     const userKey = String(body.userRequest.user.id);
